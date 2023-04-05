@@ -1,0 +1,1 @@
+export { registrationValidateSchema } from './registrationValidateSchema';
