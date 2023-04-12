@@ -38,8 +38,34 @@ export const logInUser = createAsyncThunk(
   }
 );
 
-export const logOutUser = createAsyncThunk();
+export const logOutUser = createAsyncThunk(
+  'auth/logout',
+  async (_, thunkAPI) => {
+    try {
+      await axios.post('users/logout');
+      clearAuthHeader();
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.massage);
+    }
+  }
+);
 
-export const updateUser = createAsyncThunk();
+export const updateUser = createAsyncThunk(
+  'auth/update',
+  async (_, thunkAPI) => {
+    const { token } = thunkAPI.getState().auth;
 
-export const deleteUser = createAsyncThunk();
+    if (!token) {
+      return thunkAPI.rejectWithValue('Update user: no token');
+    }
+
+    setAuthHeader(token);
+
+    try {
+      const response = await axios.get('/users/current');
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('Update user:', error);
+    }
+  }
+);

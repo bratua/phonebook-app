@@ -1,8 +1,8 @@
 {
-  "name": "phonebook-back-end",
+  "name": "phonebook-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bratua.github.io/phonebook-back-end/",
+  "homepage": "https://bratua.github.io/phonebook-app/",
   "dependencies": {
     "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",

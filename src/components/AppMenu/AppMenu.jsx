@@ -1,7 +1,10 @@
+import { useAuthState } from 'hooks';
+import { UserMenu } from 'components/UserMenu';
 import { AuthMenu } from 'components/AuthMenu';
-import { NavLink } from 'react-router-dom';
+import { MainMenu } from 'components/MainMenu';
 
 export const AppMenu = () => {
+  const { isLoggedIn } = useAuthState();
   return (
     <header
       style={{
@@ -9,17 +12,8 @@ export const AppMenu = () => {
         gap: '25px',
       }}
     >
-      <div
-        style={{
-          display: 'flex',
-          gap: '5px',
-        }}
-      >
-        <NavLink to="home">Home</NavLink>
-        <NavLink to="contacts">Contacts</NavLink>
-      </div>
-
-      <AuthMenu />
+      {<MainMenu />}
+      {isLoggedIn ? <UserMenu /> : <AuthMenu />}
     </header>
   );
 };
