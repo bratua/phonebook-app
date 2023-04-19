@@ -1,17 +1,15 @@
-// import { ContactsList } from 'components/ContactsList';
+import { ContactsList } from 'components/ContactsList';
 import { Editor } from 'components/Editor';
-// import { useAddContactMutation } from 'redux/contactSlice';
+import { useAuthState } from 'hooks';
 
 export const Contacts = () => {
-  // const [addContact, result] = useAddContactMutation();
-
-  // const handleAddContact = () => {};
+  const { isLoggedIn } = useAuthState();
 
   return (
     <>
       <h2>Contacts</h2>
-      <Editor />
-      {/* <ContactsList /> */}
+      {/* <Editor /> */}
+      {isLoggedIn && <ContactsList />}
     </>
   );
 };

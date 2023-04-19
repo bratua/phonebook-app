@@ -12,9 +12,9 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
-import { registrationValidateSchema } from 'options';
 import { useDispatch } from 'react-redux';
 import { registerUser } from 'redux/auth/operations';
+import { regValidationSchema } from 'options';
 
 export const Register = () => {
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ export const Register = () => {
   return (
     <Formik
       initialValues={INITIAL_VALUES}
-      // validationSchema={registrationValidateSchema}
+      // validationSchema={regValidationSchema}
       onSubmit={handleSubmit}
     >
       {props => (

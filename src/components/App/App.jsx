@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'redux/auth/operations';
 import { useAuthState } from 'hooks';
+import { getAllContacts } from 'redux/contacts';
 
 export const App = () => {
   const dispatch = useDispatch();

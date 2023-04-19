@@ -1,1 +1,1 @@
-export { registrationValidateSchema } from './registrationValidateSchema';
+export { regValidationSchema, contactValidationSchema } from './validations';
