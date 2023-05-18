@@ -25,16 +25,11 @@ import { clearConfigCache } from 'prettier';
 
 export const EditableInputElementFormik = ({ name, id, value }) => {
   const [inputValue, setInputValue] = useState(value);
-  const [isInputError, setIsInputError] = useState(false);
   const dispatch = useDispatch();
 
   const handleInputChange = value => {
     setInputValue(value);
-    console.log('value', value);
-  };
-
-  const handleInputCancel = prev => {
-    setInputValue(prev);
+    // console.log('value', value);
   };
 
   const onUpdate = () => {
@@ -47,7 +42,7 @@ export const EditableInputElementFormik = ({ name, id, value }) => {
   // console.log('Editable', Editable);
   /* Control buttons for input element */
 
-  const ControlButtons = ({ isInputError, isInputActive }) => {
+  const ControlButtons = ({ isInputError }) => {
     const {
       isEditing,
       getSubmitButtonProps,
@@ -56,6 +51,7 @@ export const EditableInputElementFormik = ({ name, id, value }) => {
     } = useEditableControls();
     // console.log(getEditButtonProps());
     return isEditing ? (
+      //buttons if editing
       <ButtonGroup justifyContent="center" size="sm">
         <IconButton
           icon={<CheckIcon />}
@@ -65,7 +61,8 @@ export const EditableInputElementFormik = ({ name, id, value }) => {
         <IconButton icon={<CloseIcon />} {...getCancelButtonProps()} />
       </ButtonGroup>
     ) : (
-      <Flex justifyContent="center">
+      // Edit button position
+      <Flex>
         <IconButton size="sm" icon={<EditIcon />} {...getEditButtonProps()} />
       </Flex>
     );
@@ -75,27 +72,21 @@ export const EditableInputElementFormik = ({ name, id, value }) => {
     <Formik
       validationSchema={contactValidationSchema}
       initialValues={{ [name]: inputValue }}
-      // onSubmit={onUpdate}
     >
       {props => {
         return (
           <Form autoComplete="off">
-            <Field
-              name={name}
-              // onChange={() => {
-              //   props.validateField(name);
-              // }}
-            >
+            <Field name={name}>
               {({ field, form, meta }) => {
                 return (
                   <FormControl
                     isRequired
                     isInvalid={form.errors[name] && form.touched[name]}
                   >
-                    <FormLabel>{name}</FormLabel>
+                    {/* <FormLabel>{name}</FormLabel> */}
 
                     <Editable
-                      textAlign="center"
+                      textAlign="left"
                       // defaultValue={props.values[name]}
                       defaultValue={inputValue}
                       fontSize="2xl"
@@ -107,13 +98,12 @@ export const EditableInputElementFormik = ({ name, id, value }) => {
                       }
                       onChange={handleInputChange}
                     >
-                      <EditablePreview />
-                      <Input as={EditableInput} {...field} />
+                      <Flex justifyContent="space-between">
+                        <EditablePreview />
+                        <Input as={EditableInput} {...field} />
+                        <ControlButtons isInputError={form.errors[name]} />
+                      </Flex>
                       <FormErrorMessage>{`Invalid ${meta.error}`}</FormErrorMessage>
-                      <ControlButtons
-                        isInputError={form.errors[name]}
-                        isInputActive={form.touched[name]}
-                      />
                     </Editable>
                   </FormControl>
                 );

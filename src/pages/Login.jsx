@@ -16,7 +16,7 @@ import { registrationValidateSchema } from 'options';
 import { useDispatch } from 'react-redux';
 import { logInUser } from 'redux/auth/operations';
 
-export const Login = () => {
+const Login = () => {
   const dispatch = useDispatch();
 
   const INITIAL_VALUES = {
@@ -92,3 +92,5 @@ export const Login = () => {
     </Formik>
   );
 };
+
+export default Login;

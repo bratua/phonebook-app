@@ -6,7 +6,12 @@ import { App } from 'components/App/App';
 import './index.css';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { ChakraBaseProvider, extendBaseTheme } from '@chakra-ui/react';
+import {
+  ChakraBaseProvider,
+  extendBaseTheme,
+  ChakraProvider,
+  ColorModeScript,
+} from '@chakra-ui/react';
 import chakraTheme from '@chakra-ui/theme';
 import { store, persistor } from 'redux/store';
 
@@ -18,9 +23,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/phonebook-app">
+          {/* <ChakraProvider> */}
           <ChakraBaseProvider theme={chakraTheme}>
+            <ColorModeScript initialColorMode={theme.config.initialColorMode} />
             <App />
           </ChakraBaseProvider>
+          {/* </ChakraProvider> */}
         </BrowserRouter>
       </PersistGate>
     </Provider>

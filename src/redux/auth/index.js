@@ -1,2 +1,7 @@
 export { authReducer } from './authSlice';
-export { selectUser, selectIsUpdating, selectIsLoggedIn } from './selectors';
+export {
+  selectUser,
+  selectToken,
+  selectIsUpdating,
+  selectIsLoggedIn,
+} from './selectors';

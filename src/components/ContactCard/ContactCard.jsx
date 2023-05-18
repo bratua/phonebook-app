@@ -1,4 +1,5 @@
 import {
+  Flex,
   Box,
   FormControl,
   FormLabel,
@@ -14,23 +15,22 @@ import {
 } from '@chakra-ui/react';
 import { useDispatch } from 'react-redux';
 import { deleteContact } from 'redux/contacts';
-import {
-  EditableInputElement,
-  EditableInputElementFormik,
-} from 'components/EditableInputElement';
+import { EditableInputElementFormik } from 'components/EditableInputElement';
 
 export const ContactCard = ({ id, name, number }) => {
   const dispatch = useDispatch();
   const handleDelete = () => dispatch(deleteContact(id));
   return (
-    <div>
-      {/* {<EditableInputElement id={id} name="name" value={name} />}:
-      {<EditableInputElement id={id} name="number" value={number} />} */}
-      {<EditableInputElementFormik id={id} name="name" value={name} />}
-      {/* {<EditableInputElementFormik id={id} name="number" value={number} />} */}
-      <Button isDisabled type="button" onClick={handleDelete}>
+    <Box borderWidth="4px" borderRadius="lg" mb="10px">
+      {/* <Flex justifyContent="space-between"> */}
+      <Box borderRadius="lg">
+        {<EditableInputElementFormik id={id} name="name" value={name} />}
+        {<EditableInputElementFormik id={id} name="number" value={number} />}
+      </Box>
+      <Button colorScheme="blue" type="button" onClick={handleDelete}>
         DELETE
       </Button>
-    </div>
+      {/* </Flex> */}
+    </Box>
   );
 };

@@ -1,13 +1,17 @@
-import { Layout } from 'components/Layout';
 import { Route, Routes } from 'react-router-dom';
-import { Register } from 'pages/Register.jsx';
-import { Login } from 'pages/Login.jsx';
-import { Contacts } from 'pages/Contacts.jsx';
-import { useEffect } from 'react';
+import { useEffect, lazy } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUser } from 'redux/auth/operations';
 import { useAuthState } from 'hooks';
-import { getAllContacts } from 'redux/contacts';
+import { PrivateRoute, PublicRoute } from 'components/CustomRouts';
+
+import { Layout } from 'components/Layout';
+
+const Register = lazy(() => import('pages/Register.jsx'));
+const Login = lazy(() => import('pages/Login.jsx'));
+const Contacts = lazy(() => import('pages/Contacts.jsx'));
+const Home = lazy(() => import('pages/Home.jsx'));
+const NotFound = lazy(() => import('pages/NotFound.jsx'));
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -21,15 +25,21 @@ export const App = () => {
     'Getting data'
   ) : (
     <>
-      <div>APP</div>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<p>Home Page</p>} />
-          <Route index path="home" element={<p>Home Page</p>} />
-          <Route path="contacts" element={<Contacts />} />
+          <Route index element={<Home />} />
+          <Route index path="home" element={<Home />} />
 
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
+          <Route path="" element={<PublicRoute />}>
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+          </Route>
+
+          <Route path="" element={<PrivateRoute />}>
+            <Route path="contacts" element={<Contacts />} />
+          </Route>
+
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>

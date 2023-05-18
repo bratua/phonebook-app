@@ -65,7 +65,7 @@ export const updateUser = createAsyncThunk(
       const response = await axios.get('/users/current');
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue('Update user:', error);
+      return thunkAPI.rejectWithValue('Update user: ', error);
     }
   }
 );

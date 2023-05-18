@@ -16,7 +16,7 @@ import { useDispatch } from 'react-redux';
 import { registerUser } from 'redux/auth/operations';
 import { regValidationSchema } from 'options';
 
-export const Register = () => {
+const Register = () => {
   const dispatch = useDispatch();
 
   const INITIAL_VALUES = {
@@ -115,3 +115,5 @@ export const Register = () => {
     </Formik>
   );
 };
+
+export default Register;

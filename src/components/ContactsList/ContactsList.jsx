@@ -29,7 +29,7 @@ export const ContactsList = () => {
           {allContacts.map(({ id, name, number }) => {
             return (
               <li key={id}>
-                <ContactCard id={id} name={name} number={number} />;
+                <ContactCard id={id} name={name} number={number} />
               </li>
             );
           })}
