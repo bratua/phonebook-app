@@ -28,28 +28,29 @@ export const UserMenu = () => {
   console.log('isNotMobile ', isNotMobile);
 
   const {
-    user: { name, email },
+    user: { name },
   } = useAuthState();
 
   return (
     <Flex
-      bgColor="yellow.400"
       justify={['space-between', 'right']}
       gap={[1, 2]}
       alignItems="center"
-      pl={2}
-      pr={2}
+      // pl={2}
+      // pr={2}
     >
-      {isNotMobile && <Avatar size="sm" name={name} />}
-      {<Text fontSize="sm">{name}</Text>}
+      {/* {<Avatar size={'xs'} name={name} />} */}
+      {isNotMobile && <Avatar size={'xs'} name={name} />}
+      {<Text fontSize="xs">{name}</Text>}
       <Button
-        width={8}
-        height={8}
+        w={9}
+        h={9}
+        bgColor={'blue.200'}
+        size={'xs'}
         type="button"
         onClick={handleLogOut}
-        bgColor="grey.300"
       >
-        <Icon as={FiLogOut} width={4} height={4} />
+        <FiLogOut />
       </Button>
     </Flex>
   );

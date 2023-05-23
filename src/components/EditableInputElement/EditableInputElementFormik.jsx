@@ -14,6 +14,7 @@ import {
   FormHelperText,
   Button,
   useBoolean,
+  Text,
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import { CheckIcon, CloseIcon, EditIcon } from '@chakra-ui/icons';
@@ -99,7 +100,7 @@ export const EditableInputElementFormik = ({ name, id, value }) => {
                       onChange={handleInputChange}
                     >
                       <Flex justifyContent="space-between">
-                        <EditablePreview />
+                        <EditablePreview isTruncated />
                         <Input as={EditableInput} {...field} />
                         <ControlButtons isInputError={form.errors[name]} />
                       </Flex>

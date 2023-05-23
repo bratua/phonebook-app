@@ -7,28 +7,32 @@ import {
   Button,
   Box,
   Stack,
+  HStack,
+  VStack,
   Spacer,
   Flex,
+  Switch,
+  FormLabel,
+  Divider,
 } from '@chakra-ui/react';
+import { ThemeColorModeSwitcher } from 'components/ThemeColorModeSwitcher';
 
 export const AppMenu = () => {
   const { isLoggedIn } = useAuthState();
-  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
     <Flex
       as="header"
-      width={[300, 480, 800]}
-      bg={['red.300', 'green.300', 'blue.300']}
-      justify={[null, 'space-between']}
-      direction={['row']}
+      justify="space-between"
+      direction="row"
+      alignItems="center"
+      mb={2}
+      bgColor={'blue.300'}
+      p={1}
     >
+      {<ThemeColorModeSwitcher />}
       {<MainMenu />}
-      {/* {<Spacer />} */}
       {isLoggedIn ? <UserMenu /> : <AuthMenu />}
-      {/* <Button onClick={toggleColorMode}>
-        Toggle {colorMode === 'light' ? 'Dark' : 'Light'}
-      </Button> */}
     </Flex>
   );
 };
